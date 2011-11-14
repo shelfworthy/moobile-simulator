@@ -175,12 +175,28 @@
 					device.load(app);
 					Cookie.write('app', app);
 				}
-
 			});
 
 		})();
 		
 		window.addEvent('domready', function(){
+			document.onkeydown = function() {
+				switch (event.keyCode) {
+					case 116 : //F5 button
+						event.returnValue = false;
+						event.keyCode = 0;
+						document.getElementById('loader').src = document.getElementById('loader').src;
+						return false; 
+					case 82 : //R button
+						if (event.metaKey || event.ctrlKey) {
+							event.returnValue = false;
+							event.keyCode = 0;
+							document.getElementById('loader').src = document.getElementById('loader').src;
+							return false;
+						}
+				}
+			}
+			
 			var updateTime = function() {
 				var currentTime = new Date()
 				var hours = currentTime.getHours()
